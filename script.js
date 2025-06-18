@@ -6,18 +6,17 @@ noBtn.addEventListener('mouseover', moveButton);
 noBtn.addEventListener('touchstart', moveButton);
 
 function moveButton() {
-  const x = Math.floor(Math.random() * 300) - 150; // random shift
-  const y = Math.floor(Math.random() * 300) - 150;
+  const x = Math.floor(Math.random() * 200) - 100;
+  const y = Math.floor(Math.random() * 200) - 100;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
 yesBtn.addEventListener('click', () => {
-  response.innerHTML = "Yayy! You just made my day! 💖🎉";
+  response.innerHTML = "Laage che Ahmedavad dhakko khavo pdse 😂💖🎉.";
   response.style.opacity = 1;
   confettiAnimation();
 });
 
-// Optional fun animation (basic confetti)
 function confettiAnimation() {
   const emojis = ['💖', '🎉', '✨', '💫', '❤️'];
   for (let i = 0; i < 30; i++) {
@@ -29,7 +28,6 @@ function confettiAnimation() {
     confetti.style.fontSize = '24px';
     confetti.style.animation = `fall ${2 + Math.random() * 3}s linear`;
     document.body.appendChild(confetti);
-
     setTimeout(() => confetti.remove(), 5000);
   }
 }

@@ -1,26 +1,85 @@
-body {
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fceaff;
+  scroll-behavior: smooth;
+  background: url('resources/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Sections */
+.intro-section,
+.question-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
   text-align: center;
+  color: white;
+  padding: 20px;
+  overflow: hidden;
 }
 
-.container {
-  max-width: 600px;
+.intro-section::before,
+.question-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1;
 }
 
-h1 {
-  color: #444;
+.intro-message,
+.question-section h1,
+.buttons,
+.response {
+  position: relative;
+  z-index: 2;
 }
 
+/* Typewriter Text with Square Cursor */
+.intro-message {
+  font-family: 'Source Code Pro', 'Courier New', monospace;
+  font-size: 20px;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  width: 0;
+  opacity: 0;
+  animation: typing 3s steps(40, end) forwards;
+  animation-delay: var(--delay);
+}
+
+.intro-message::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 2px;
+  width: 10px;
+  height: 18px;
+  background-color: white;
+  animation: blink-square 0.7s step-end infinite;
+  animation-delay: var(--delay);
+}
+
+/* Buttons */
 .buttons {
   margin-top: 30px;
-  position: relative;
-  height: 100px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 button {
@@ -30,27 +89,36 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
-  position: absolute;
 }
 
 #yesBtn {
   background-color: #4CAF50;
   color: white;
-  left: 100px;
 }
 
 #noBtn {
   background-color: #f44336;
   color: white;
-  right: 100px;
+  position: relative;
 }
 
+/* Response */
 .response {
   margin-top: 40px;
-  font-size: 24px;
-  color: #444;
+  font-size: 20px;
+  color: white;
   opacity: 0;
   transition: opacity 1s;
+}
+
+/* Animations */
+@keyframes typing {
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
+}
+
+@keyframes blink-square {
+  50% { opacity: 0; }
 }
 
 @keyframes fall {
@@ -60,54 +128,23 @@ button {
   }
 }
 
-.intro-section {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-}
+/* Responsive */
+@media (max-width: 480px) {
+  .intro-message {
+    font-size: 18px;
+  }
 
-.intro-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('resources/background.jpg') no-repeat center center/cover;
-  filter: blur(4px) brightness(0.6); /* blur + darken */
-  z-index: 1;
-}
+  .question-section h1 {
+    font-size: 22px;
+    padding: 0 20px;
+  }
 
-.intro-message {
-  font-size: 28px;
-  max-width: 600px;
-  z-index: 2; /* puts it above the background */
-  opacity: 0;
-  animation: fadeIn 2s ease-out forwards;
-}
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
 
-/* Optional typing effect instead */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  .response {
+    font-size: 18px;
+  }
 }
-
-@keyframes blink {
-  50% { border-color: transparent }
-}
-
-.typing {
-  border-right: 2px solid white;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  animation: typing 4s steps(40, end) forwards, blink 0.7s step-end infinite;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
