@@ -1,0 +1,113 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fceaff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+}
+
+h1 {
+  color: #444;
+}
+
+.buttons {
+  margin-top: 30px;
+  position: relative;
+  height: 100px;
+}
+
+button {
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  position: absolute;
+}
+
+#yesBtn {
+  background-color: #4CAF50;
+  color: white;
+  left: 100px;
+}
+
+#noBtn {
+  background-color: #f44336;
+  color: white;
+  right: 100px;
+}
+
+.response {
+  margin-top: 40px;
+  font-size: 24px;
+  color: #444;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.intro-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.intro-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('resources/background.jpg') no-repeat center center/cover;
+  filter: blur(4px) brightness(0.6); /* blur + darken */
+  z-index: 1;
+}
+
+.intro-message {
+  font-size: 28px;
+  max-width: 600px;
+  z-index: 2; /* puts it above the background */
+  opacity: 0;
+  animation: fadeIn 2s ease-out forwards;
+}
+
+/* Optional typing effect instead */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 4s steps(40, end) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
